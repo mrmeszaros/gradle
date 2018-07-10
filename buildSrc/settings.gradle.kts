@@ -14,6 +14,24 @@
  * limitations under the License.
  */
 
+fun RepositoryHandler.kotlinDev() =
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-dev/")
+
+pluginManagement {
+    repositories {
+        kotlinDev()
+        gradlePluginPortal()
+    }
+}
+
+gradle.rootProject {
+    allprojects {
+        repositories {
+            kotlinDev()
+	}
+    }
+}
+
 apply {
     from("../gradle/shared-with-buildSrc/build-cache-configuration.settings.gradle.kts")
 }
