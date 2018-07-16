@@ -24,7 +24,6 @@ import java.io.Serializable;
 
 
 //TODO version - could be different from main artifact's version
-//TODO description - could be put in the Pom/Ivy file for clarity
 /**
  * Describes a Gradle plugin under development.
  *
@@ -36,6 +35,8 @@ public class PluginDeclaration implements Named, Serializable {
     private final String name;
     private String id;
     private String implementationClass;
+    private String displayName;
+    private String description;
 
     public PluginDeclaration(String name) {
         this.name = name;
@@ -60,6 +61,34 @@ public class PluginDeclaration implements Named, Serializable {
 
     public void setImplementationClass(String implementationClass) {
         this.implementationClass = implementationClass;
+    }
+
+    /**
+     * @since 4.10
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * @since 4.10
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    /**
+     * @since 4.10
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @since 4.10
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
