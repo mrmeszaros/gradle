@@ -3,7 +3,7 @@ digraph javaPluginConfigurations {
     size = "20,20"
     splines = true;
     nodesep=0.3;
-	node [shape=box style="rounded,filled" fillcolor= chartreuse];
+    node [shape=box style="rounded,filled" fillcolor= chartreuse];
 
     /* tasks */
     uploadArchives [fillcolor=darkslategray1 label="uploadArchives task"]
@@ -17,6 +17,12 @@ digraph javaPluginConfigurations {
     runtime [fontcolor=red]
     testCompile [fontcolor=red]
     testRuntime [fontcolor=red]
+
+    /* classpath aggregators */
+    compileClasspath [fillcolor=darkgoldenrod1]
+    runtimeClasspath [fillcolor=darkgoldenrod1]
+    testCompileClasspath [fillcolor=darkgoldenrod1]
+    testRuntimeClasspath [fillcolor=darkgoldenrod1]
 
     /* configurations */
     implementation -> compile;
@@ -33,10 +39,10 @@ digraph javaPluginConfigurations {
 
     /* tasks */
     uploadArchives -> archives [style=dashed label="uploads"]
-    jar -> { archives runtime} [style=dashed label="adds jar"]
-    testRuntime -> test [style=dashed label="used by"]
-    compileClasspath -> compileJava [style=dashed label="used by"]
-    testCompileClasspath -> compileTestJava [style=dashed label="used by"]
+    jar -> {archives runtime} [style=dashed label="adds jar"]
+    test -> testRuntimeClasspath [style=dashed label=" uses"]
+    compileJava -> compileClasspath [style=dashed label=" uses"]
+    compileTestJava -> testCompileClasspath [style=dashed label=" uses"]
 
 
     /* invisible edge to control the layout */
